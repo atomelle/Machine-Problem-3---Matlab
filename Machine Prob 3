@@ -1,0 +1,23 @@
+data=input('Input the x and y values: ');
+
+if length(data)>10
+    error 'Limit the polynomials only until the 10th degree.'
+end
+    
+for k=1:length(data)-1
+    polyxi=polyfit(data(:,1),data(:,2), k);
+    pv=polyval(polyxi,data(:,1));
+    polyyi=norm(data(:,2)-pv);
+    b=[k,polyyi];
+    
+    if k==1
+        a=b;
+    end
+    
+    if a(2)>=b(2)
+        s=b(1);
+    end
+end
+
+
+polyfit(data(:,1),data(:,2),s)
